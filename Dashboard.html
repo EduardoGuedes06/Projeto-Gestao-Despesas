@@ -1,0 +1,375 @@
+<html>
+
+
+
+
+<style>
+  .custom-primary.bg-primary {
+    background-color: #63db07 !important;
+  }
+
+  .titulo {
+    margin-bottom: 20px;
+  }
+
+  .linha-separadora {
+    border: none;
+    border-top: 1px solid #000;
+    margin-bottom: 20px;
+  }
+
+  .custom-link {
+    color: #000000;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 20px;
+  }
+
+  .close-btn:hover {
+    color: #f00;
+  }
+
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 650px;
+    min-width: 650px;
+    max-height: 490px;
+    min-height: 490px;
+    overflow-y: auto;
+  }
+
+  #calendar {
+    width: 72%;
+    min-height: 390px;
+    min-width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Estilos do botão */
+  .btn {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .card-body {
+    min-width: 500px !important;
+    min-height: 180px !important;
+    padding: 0 20px;
+  }
+  .card-body-2 {
+    min-width: 200px !important;
+    min-height: 120px !important;
+
+  }
+  #myChart {
+    min-width: 200px !important;
+    min-height: 50px !important;
+  }
+
+  .button-container .col-lg-4,
+.button-container .col-md-4,
+.button-container .col-sm-6,
+.button-container .col-12 {
+  margin-bottom: 15px;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-theme {
+  background-color: #63db07;
+}
+
+.bg-danger {
+  background-color: #dc3545;
+}
+
+.border {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.shadow {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.media {
+  display: flex;
+  align-items: center;
+}
+
+.notify-icon {
+  width: 50px;
+  height: 50px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+.fa-user,
+.fa-envelope-open,
+.fa-tags {
+  font-size: 24px;
+}
+
+.fa-tags.text-theme {
+  color: #63db07;
+}
+
+.fa-user {
+  color: #ffffff;
+}
+
+.fa-envelope-open {
+  color: #dc3545;
+}
+
+.media-body {
+  flex: 1;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.bc-description {
+  font-size: 14px;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+</style>
+
+<head>
+  <meta charset='utf-8' />
+
+  <meta charset='utf-8' />
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.8/index.global.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.8/index.global.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+
+
+  <title>Orçamento pessoal</title>
+
+  <!-- Bootstrap início -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap fim -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script src="./assets/js/DashApps.js"></script>
+  <script src="assets/js/demo_Tabela.js"></script>
+
+</head>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <h2 class="centered-text">CALENDARIO</h2>
+      </div>
+      <div class="col-4">
+        <button class="close-btn" onclick="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div id='calendar'></div>
+    </div>
+  </div>
+</div>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary custom-primary mb-5">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="https://img.icons8.com/wired/64/money--v1.png" width="50" height="50" alt="Orçamento pessoal">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link custom-link" href="index.html">Cadastro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-link" href="consulta.html">Consulta</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link custom-link" href="Dashboard.html">DashBoard</a>
+          </li>
+          <button type="button" class="btn btn-primary searchButton" onclick="openModal()"
+          style="background-color: #63db07; border-color: #63db07;">
+          CALENDARIO <i class="fas fa-calendar"></i>
+        </button>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <h1 class="display-4">DashBoard De Despesas</h1>
+      </div>
+    </div>
+  </div>
+  <hr class="linha-separadora">
+  <div class="container">
+                    <!--Dashboard widget-->
+                    <div class="mt-1 mb-3 button-container">
+                      <div class="row pl-0">
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                              <div class="bg-white border shadow">
+                                  <div class="media p-4">
+                                      <div class="align-self-center mr-3 rounded-circle notify-icon bg-theme">
+                                          <i class="fa fa-user"></i>
+                                      </div>
+                                      <div class="media-body pl-2">
+                                          <h3 class="mt-0 mb-0"><strong>
+                                            <input id="CustoTotal" type="text" style="width:200px; border: none;" readonly>
+                                          </strong></h3>
+                                          <p><small class="text-muted bc-description">CUSTO MÊS</small></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                              <div class="bg-white border shadow">
+                                  <div class="media p-4">
+                                      <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
+                                          <i class="fas fa-envelope-open"></i>
+                                      </div>
+                                      <div class="media-body pl-2">
+                                          <h3 class="mt-0 mb-0"><strong>
+                                            <input id="DespesasTotal" type="text" style="width:200px; border: none;" readonly>
+                                          </strong></h3>
+                                          <p><small class="text-muted bc-description">DESPESAS MÊS</small></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                              <div class="bg-theme border shadow">
+                                  <div class="media p-4">
+                                      <div class="align-self-center mr-3 rounded-circle notify-icon bg-white">
+                                          <i class="fa fa-tags text-theme"></i>
+                                      </div>
+                                      <div class="media-body pl-2">
+                                          <h3 class="mt-0 mb-0"><strong>6</strong></h3>
+                                          <p><small class="bc-description text-white">TIPOS DESPESAS</small></p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+    <div class="row">
+      <div class="col-6 custom-card">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fas fa-chart-bar me-1"></i>
+            GRAFICO DE DESPESAS
+          </div>
+          <div class="card-body">
+            <canvas id="myChart" width="100%" height="40"></canvas>
+          </div>
+        </div>   
+        <div class="card mb-4 center canvas">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-user-circle me-1"></i>
+            <span>EDUARDO GUEDES - BP3018326</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fas fa-user-circle me-1"></i>
+            <span>AMANDA LUIZA SILVA - BP3018598</span>
+          </div>
+        </div>
+        
+        
+      </div>
+      <div class="col-6 custom-card center">
+          <div class="card mb-4">
+            <div class="card-header"  >
+              <i class="fas fa-chart-pie me-1"></i>
+              GRÁFICO DE DESPESAS
+            </div>
+            <div class="card-body">
+              <canvas id="pieChart" width="120%" height="150"></canvas>
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+#calendar {
+    max-width: 8000px; /* Define a largura máxima do calendário */
+    margin: 0 auto; /* Centraliza o calendário na página */
+}
+
+.fc-dayGridMonth-view .fc-day-number {
+    font-weight: bold; /* Define a fonte em negrito para os números de dia */
+}
+
+.fc-dayGridMonth-view .fc-day-sat {
+    background-color: #000000; /* Define a cor de fundo para os sábados */
+}
+
+.fc-dayGridMonth-view .fc-day-sun {
+    background-color: #000000; /* Define a cor de fundo para os domingos */
+}
+
+.fc-event {
+    background-color: #008000; /* Define a cor de fundo para os eventos */
+    color: #ffffff; /* Define a cor do texto para os eventos */
+    border-color: #006400; /* Define a cor da borda para os eventos */
+}
